@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository Index</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+        .loader {
+            display: block;
+            text-align: center;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            padding: 20px 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+        }
+        li {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        li:hover {
+            background-color: #f9fbfd;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            display: inline-block;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+        .meta-path {
+            display: block;
+            font-size: 0.85em;
+            color: #95a5a6;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="repo-title">Repository Index</h1>
+    <div id="loader" class="loader">Scanning repository for pages...</div>
+    <ul id="index-list"></ul>
+</div>
+
+<script>
+    // --- CONFIGURATION ---
+    const CONFIG = {
+        username: 'YOUR_GITHUB_USERNAME', // Your GitHub username
+        repo: 'YOUR_REPO_NAME',           // Your repository name
+        branch: 'main'                    // Default branch (main or master)
+    };
+    // ---------------------
+
+    document.getElementById('repo-title').innerText = `${CONFIG.repo} Pages Index`;
+
+    async function generateIndex() {
+        const listElement = document.getElementById('index-list');
+        const loader = document.getElementById('loader');
+        
+        // GitHub API endpoint to get the repository tree recursively
+        const apiUrl = `https://api.github.com/repos/${CONFIG.username}/${CONFIG.repo}/git/trees/${CONFIG.branch}?recursive=1`;
+
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error('Failed to fetch repository structure');
+            
+            const data = await response.json();
+            
+            // Filter out files that are HTML, ignoring index.html itself
+            const htmlFiles = data.tree.filter(file => 
+                file.type === 'blob' && 
+                file.path.endsWith('.html') && 
+                file.path.toLowerCase() !== 'index.html'
+            );
+
+            if (htmlFiles.length === 0) {
+                loader.innerText = "No other HTML pages found in this repository.";
+                return;
+            }
+
+            // Fetch titles asynchronously
+            const pagesData = await Promise.all(htmlFiles.map(async (file) => {
+                // Construct the raw URL to read file content for extracting <title>
+                const rawUrl = `https://raw.githubusercontent.com/${CONFIG.username}/${CONFIG.repo}/${CONFIG.branch}/${file.path}`;
+                let title = file.path; // Fallback to filename if no title found
+                
+                try {
+                    const fileResponse = await fetch(rawUrl);
+                    if (fileResponse.ok) {
+                        const text = await fileResponse.text();
+                        // Regex to extract string inside <title>...</title>
+                        const match = text.match(/<title[^>]*>([^<]+)<\/title>/i);
+                        if (match && match[1]) {
+                            title = match[1].trim();
+                        }
+                    }
+                } catch (e) {
+                    console.error(`Could not parse title for ${file.path}:`, e);
+                }
+                
+                return { path: file.path, title: title };
+            }));
+
+            // Hide loader
+            loader.style.display = 'none';
+
+            // Sort alphabetically by title
+            pagesData.sort((a, b) => a.title.localeCompare(b.title));
+
+            // Render the items
+            pagesData.forEach(page => {
+                const li = document.createElement('li');
+                
+                const a = document.createElement('a');
+                a.href = page.path;
+                a.innerText = page.title;
+                
+                const span = document.createElement('span');
+                span.className = 'meta-path';
+                span.innerText = `Path: ${page.path}`;
+                
+                li.appendChild(a);
+                li.appendChild(span);
+                listElement.appendChild(li);
+            });
+
+        } catch (error) {
+            console.error(error);
+            loader.innerText = "Error loading repository index. Make sure configuration is correct and the repository is public.";
+            loader.style.color = "#e74c3c";
+        }
+    }
+
+    // Initialize indexing on load
+    generateIndex();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 4 Computer - Chapter 1 Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .instructions {
+            background-color: #e8f4f8;
+            padding: 10px 15px;
+            border-left: 5px solid #3498db;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .question-text {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 8px;
+        }
+        .options label {
+            display: block;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .options label:hover {
+            background: #e9e9e9;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .btn-submit:hover {
+            background: #219653;
+        }
+        #result-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            display: none;
+            text-align: center;
+        }
+        #score-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .answer-key-section {
+            margin-top: 30px;
+            display: none;
+        }
+        .answer-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #fff;
+            border-left: 5px solid #27ae60;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .wrong-highlight {
+            border-left: 5px solid #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>Class 4 Computer: Chapter 1 Quiz</h1>
+    <div class="instructions">
+        <strong>निर्देश (Instructions):</strong> सभी प्रश्नों को ध्यान से पढ़ें और सही विकल्प का चयन करें। अंत में "Submit Quiz" बटन दबाकर अपना स्कोर और उत्तर कुंजी (Answer Key) देखें।
+    </div>
+
+    <form id="quizForm">
+        <div id="questions-container"></div>
+        
+        <button type="button" class="btn-submit" onclick="checkAnswers()">Submit Quiz</button>
+    </form>
+
+    <div id="result-box">
+        <div id="score-text"></div>
+        <p>नीचे सभी प्रश्नों के सही उत्तर दिए गए हैं।</p>
+    </div>
+
+    <div id="answer-key-section" class="answer-key-section">
+        <h2>Answer Key (उत्तर कुंजी)</h2>
+        <div id="answer-list"></div>
+    </div>
+</div>
+
+<script>
+    // 30 standard Class 4 level Questions based on Internet/Computers Intro
+    const quizData = [
+        { q: "What does 'WWW' stand for?", a: "World Wide Web", b: "World Whole Web", c: "Wide World Web", d: "Web World Wide", correct: "a" },
+        { q: "Which of the following is an example of a web browser?", a: "MS Paint", b: "Google Chrome", c: "MS Word", d: "Windows 10", correct: "b" },
+        { q: "What is the internet?", a: "A network of computers around the world", b: "A type of software", c: "A storage device", d: "A part of a printer", correct: "a" },
+        { q: "Every web page has a unique address called...", a: "CPU", b: "URL", c: "RAM", d: "PC", correct: "b" },
+        { q: "Which button takes you back to the previous page in a browser?", a: "Forward button", b: "Refresh button", c: "Back button", d: "Home button", correct: "c" },
+        { q: "To search for information on the internet, we use a...", a: "Search Engine", b: "Monitor", c: "Keyboard", d: "Pen drive", correct: "a" },
+        { q: "Which of the following is a popular search engine?", a: "Google", b: "Notepad", c: "Calculator", d: "Photoshop", correct: "a" },
+        { q: "The first page that opens when you visit a website is called the...", a: "End page", b: "Back page", c: "Home page", d: "Middle page", correct: "c" },
+        { q: "What do we use to connect a computer to a telephone line for internet?", a: "Modem", b: "Mouse", c: "CPU", d: "Speakers", correct: "a" },
+        { q: "Moving from one website to another is called...", a: "Printing", b: "Surfing or Browsing", c: "Saving", d: "Deleting", correct: "b" },
+        { q: "What is a collection of related web pages called?", a: "Website", b: "Web link", c: "Web form", d: "E-mail", correct: "a" },
+        { q: "Which icon is used to reload or update the current web page?", a: "Stop", b: "Refresh / Reload", c: "Home", d: "History", correct: "b" },
+        { q: "What is full form of HTML?", a: "Hyper Text Markup Language", b: "High Text Machine Language", c: "Hyper Transfer Model Language", d: "Home Text Main Language", correct: "a" },
+        { q: "The highlighted text or image on a webpage that connects to another page is a...", a: "Hyperlink", b: "Title", c: "Desktop", d: "Folder", correct: "a" },
+        { q: "Which of these is NOT an internet service?", a: "E-mail", b: "Online Shopping", c: "Washing Clothes", d: "Chating", correct: "c" },
+        { q: "Which symbol is mandatory in an Email address?", a: "#", b: "$", c: "@", d: "&", correct: "c" },
+        { q: "Unwanted or junk emails are usually stored in which folder?", a: "Inbox", b: "Sent", c: "Spam", d: "Drafts", correct: "c" },
+        { q: "To see websites, your computer must be connected to the...", a: "Television", b: "Internet", c: "Refrigerator", d: "AC", correct: "b" },
+        { q: "Which device helps us to connect multiple devices to a single internet connection?", a: "Router", b: "Keyboard", c: "Scanner", d: "Joystick", correct: "a" },
+        { q: "Which of these is used to type a web address directly in a browser?", a: "Status bar", b: "Address bar", c: "Scroll bar", d: "Title bar", correct: "b" },
+        { q: "What does 'E' in E-mail stand for?", a: "Easy", b: "Electronic", c: "Engine", d: "Electric", correct: "b" },
+        { q: "Which of the following is a valid website URL example?", a: "www.google.com", b: "google@com", c: "C:\\google", d: "google/search", correct: "a" },
+        { q: "Which button in a browser stops the page from loading?", a: "Back", b: "Forward", c: "Stop", d: "Refresh", correct: "c" },
+        { q: "When you download a file from the internet, where does it go?", a: "To the internet", b: "To your computer's local storage", c: "To the printer", d: "To another computer", correct: "b" },
+        { q: "Sending a file from your computer to the internet is called...", a: "Downloading", b: "Uploading", c: "Saving", d: "Copying", correct: "b" },
+        { q: "Which of these allows us to talk and see each other over the internet?", a: "Video Conferencing", b: "Text Printing", c: "Hard Disk", d: "Calculator", correct: "a" },
+        { q: "Wi-Fi stands for...", a: "Wireless Fidelity", b: "Wire Finder", c: "Wireless Function", d: "Wire Fixer", correct: "a" },
+        { q: "A password for an online account should always be kept...", a: "Public", b: "Secret", c: "Written on desk", d: "Shared with friends", correct: "b" },
+        { q: "Which folder contains the emails you have received?", a: "Sent", b: "Inbox", c: "Trash", d: "Spam", correct: "b" },
+        { q: "Which network cable is commonly used to connect a computer to a router?", a: "Ethernet cable", b: "Power cable", c: "Audio cable", d: "HDMI cable", correct: "a" }
+    ];
+
+    // Load questions into HTML
+    const container = document.getElementById('questions-container');
+    quizData.forEach((item, index) => {
+        const qNum = index + 1;
+        const qBlock = document.createElement('div');
+        qBlock.className = 'question-block';
+        qBlock.innerHTML = `
+            <div class="question-text">${qNum}. ${item.q}</div>
+            <ul class="options">
+                <li><label><input type="radio" name="q${qNum}" value="a"> A) ${item.a}</label></li>
+                <li><label><input type="radio" name="q${qNum}" value="b"> B) ${item.b}</label></li>
+                <li><label><input type="radio" name="q${qNum}" value="c"> C) ${item.c}</label></li>
+                <li><label><input type="radio" name="q${qNum}" value="d"> D) ${item.d}</label></li>
+            </ul>
+        `;
+        container.appendChild(qBlock);
+    });
+
+    function checkAnswers() {
+        let score = 0;
+        const answerList = document.getElementById('answer-list');
+        answerList.innerHTML = ''; // Clear previous results
+
+        quizData.forEach((item, index) => {
+            const qNum = index + 1;
+            const selectedOpt = document.querySelector(`input[name="q${qNum}"]:checked`);
+            const userAns = selectedOpt ? selectedOpt.value : "None";
+            const correctAnsText = item[item.correct];
+            
+            let isCorrect = (userAns === item.correct);
+            if(isCorrect) score++;
+
+            // Create Answer Key Item
+            const ansItem = document.createElement('div');
+            ansItem.className = `answer-item ${isCorrect ? '' : 'wrong-highlight'}`;
+            ansItem.innerHTML = `
+                <strong>Q${qNum}: ${item.q}</strong><br>
+                <span style="color: ${isCorrect ? '#27ae60' : '#e74c3c'}">आपका उत्तर: ${userAns.toUpperCase()}) ${userAns !== 'None' ? item[userAns] : 'नहीं दिया'}</span><br>
+                <span style="color: #27ae60">सही उत्तर: ${item.correct.toUpperCase()}) ${correctAnsText}</span>
+            `;
+            answerList.appendChild(ansItem);
+        });
+
+        // Display Score Box
+        const resultBox = document.getElementById('result-box');
+        const scoreText = document.getElementById('score-text');
+        scoreText.innerText = `आपका स्कोर: ${score} / ${quizData.length}`;
+        resultBox.style.display = 'block';
+
+        // Display Answer Key
+        document.getElementById('answer-key-section').style.display = 'block';
+        
+        // Scroll to results smoothly
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

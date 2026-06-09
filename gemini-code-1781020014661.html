@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking EVS Worksheet - Teeth & Microbes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f3;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { text-align: center; color: #2c3e50; }
+        h2 { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-top: -10px; margin-bottom: 25px; }
+        h3 { background-color: #2c3e50; color: white; padding: 10px; border-radius: 5px; margin-top: 30px; }
+        
+        .question-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fafafa;
+            border-left: 5px solid #bdc3c7;
+            transition: all 0.3s ease;
+        }
+        .question-title { font-weight: bold; font-size: 1.05em; margin-bottom: 10px; }
+        
+        select, input[type="text"] {
+            padding: 8px;
+            font-size: 14px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            outline: none;
+            width: 200px;
+            margin-top: 5px;
+        }
+        .short-ans-input { width: 100% !important; max-width: 500px; }
+        
+        .check-btn {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .check-btn:hover { background-color: #1f618d; }
+        
+        .tf-btn {
+            padding: 8px 20px;
+            margin-right: 10px;
+            border: 2px solid #2980b9;
+            background: white;
+            color: #2980b9;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .tf-btn:hover { background: #eaf2f8; }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.95em;
+            display: none;
+        }
+        .correct { border-left-color: #2ecc71 !important; background-color: #e8f8f5; }
+        .correct-text { color: #27ae60; }
+        
+        .wrong { border-left-color: #e74c3c !important; background-color: #fce4d6; }
+        .wrong-text { color: #c0392b; }
+        
+        .score-board {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 1.1em;
+            z-index: 1000;
+        }
+        @media (max-width: 1000px) {
+            .score-board { position: static; margin-bottom: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="score-board">
+    Total Score: <span id="liveScore">0</span> / 30
+</div>
+
+<div class="container">
+    <h1>Class 4 EVS - Speaking Worksheet 🗣️</h1>
+    <h2>Chapter: Teeth and Microbes (दाँत और सूक्ष्मजीव)</h2>
+    <p style="text-align: center; color: #e67e22; font-weight: bold;">उत्तर जांचें बटन दबाएं, कंप्यूटर आपको बोलकर बताएगा कि जवाब सही है या गलत!</p>
+
+    <h3>Part A: Fill in the Blanks (रिक्त स्थान भरें)</h3>
+    
+    <div class="question-block" id="block1">
+        <div class="question-title">1. Humans have ________ sets of teeth in their lifetime.</div>
+        <select id="q1">
+            <option value="">--Select--</option>
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+        </select>
+        <button class="check-btn" onclick="checkDropdown(1, 'two', 'Two')">Check</button>
+        <div class="feedback" id="feed1"></div>
+    </div>
+
+    <div class="question-block" id="block2">
+        <div class="question-title">2. The first set of teeth in a baby is called ________ teeth.</div>
+        <input type="text" id="q2" placeholder="Type here...">
+        <button class="check-btn" onclick="checkText(2, ['milk', 'milk teeth', 'temporary', 'temporary teeth'], 'Milk teeth')">Check</button>
+        <div class="feedback" id="feed2"></div>
+    </div>
+
+    <div class="question-block" id="block3">
+        <div class="question-title">3. There are ________ permanent teeth in a healthy adult jaw.</div>
+        <input type="text" id="q3" placeholder="Number only...">
+        <button class="check-btn" onclick="checkText(3, ['32', 'thirty two'], '32')">Check</button>
+        <div class="feedback" id="feed3"></div>
+    </div>
+
+    <div class="question-block" id="block4">
+        <div class="question-title">4. ________ are used for biting and cutting food.</div>
+        <select id="q4">
+            <option value="">--Select--</option>
+            <option value="incisors">Incisors</option>
+            <option value="canines">Canines</option>
+            <option value="molars">Molars</option>
+        </select>
+        <button class="check-btn" onclick="checkDropdown(4, 'incisors', 'Incisors')">Check</button>
+        <div class="feedback" id="feed4"></div>
+    </div>
+
+    <div class="question-block" id="block5">
+        <div class="question-title">5. Sharp and pointed teeth used for tearing meat are called ________.</div>
+        <input type="text" id="q5" placeholder="Type here...">
+        <button class="check-btn" onclick="checkText(5, ['canines', 'canine'], 'Canines')">Check</button>
+        <div class="feedback" id="feed5"></div>
+    </div>
+
+    <div class="question-block" id="block6">
+        <div class="question-title">6. The hardest substance in the human body is ________.</div>
+        <input type="text" id="q6" placeholder="Type here...">
+        <button class="check-btn" onclick="checkText(6, ['enamel', 'tooth enamel'], 'Enamel')">Check</button>
+        <div class="feedback" id="feed6"></div>
+    </div>
+
+    <div class="question-block" id="block7">
+        <div class="question-title">7. The inner soft part of a tooth that contains nerves and blood vessels is called ________.</div>
+        <select id="q7">
+            <option value="">--Select--</option>
+            <option value="enamel">Enamel</option>
+            <option value="dentine">Dentine</option>
+            <option value="pulp">Pulp</option>
+        </select>
+        <button class="check-btn" onclick="checkDropdown(7, 'pulp', 'Pulp')">Check</button>
+        <div class="feedback" id="feed7"></div>
+    </div>
+
+    <div class="question-block" id="block8">
+        <div class="question-title">8. A sticky yellow layer formed on teeth due to germs is called ________.</div>
+        <input type="text" id="q8" placeholder="Type here...">
+        <button class="check-btn" onclick="checkText(8, ['plaque', 'dental plaque'], 'Plaque')">Check</button>
+        <div class="feedback" id="feed8"></div>
+    </div>
+
+    <div class="question-block" id="block9">
+        <div class="question-title">9. We should brush our teeth at least ________ a day.</div>
+        <select id="q9">
+            <option value="">--Select--</option>
+            <option value="once">Once</option>
+            <option value="twice">Twice</option>
+            <option value="thrice">Thrice</option>
+        </select>
+        <button class="check-btn" onclick="checkDropdown(9, 'twice', 'Twice')">Check</button>
+        <div class="feedback" id="feed9"></div>
+    </div>
+
+    <div class="question-block" id="block10">
+        <div class="question-title">10. ________ are tiny living things that can only be seen through a microscope.</div>
+        <input type="text" id="q10" placeholder="Type here...">
+        <button class="check-btn" onclick="checkText(10, ['microbes', 'microorganisms', 'germs'], 'Microbes')">Check</button>
+        <div class="feedback" id="feed10"></div>
+    </div>
+
+
+    <h3>Part B: True or False (सही या गलत)</h3>
+    
+    <div class="question-block" id="block11">
+        <div class="question-title">11. Milk teeth start falling out at the age of around 6 years.</div>
+        <button class="tf-btn" onclick="checkTF(11, 'True', 'True')">True</button>
+        <button class="tf-btn" onclick="checkTF(11, 'False', 'True')">False</button>
+        <div class="feedback" id="feed11"></div>
+    </div>
+
+    <div class="question-block" id="block12">
+        <div class="question-title">12. Canines are flat and broad teeth.</div>
+        <button class="tf-btn" onclick="checkTF(12, 'True', 'False')">True</button>
+        <button class="tf-btn" onclick="checkTF(12, 'False', 'False')">False</button>
+        <div class="feedback" id="feed12"></div>
+    </div>
+
+    <div class="question-block" id="block13">
+        <div class="question-title">13. There are 8 premolars in an adult mouth.</div>
+        <button class="tf-btn" onclick="checkTF(13, 'True', 'True')">True</button>
+        <button class="tf-btn" onclick="checkTF(13, 'False', 'True')">False</button>
+        <div class="feedback" id="feed13"></div>
+    </div>
+
+    <div class="question-block" id="block14">
+        <div class="question-title">14. Dentine is harder than enamel.</div>
+        <button class="tf-btn" onclick="checkTF(14, 'True', 'False')">True</button>
+        <button class="tf-btn" onclick="checkTF(14, 'False', 'False')">False</button>
+        <div class="feedback" id="feed14"></div>
+    </div>
+
+    <div class="question-block" id="block15">
+        <div class="question-title">15. Calcium and Vitamin C are good for healthy teeth.</div>
+        <button class="tf-btn" onclick="checkTF(15, 'True', 'True')">True</button>
+        <button class="tf-btn" onclick="checkTF(15, 'False', 'True')">False</button>
+        <div class="feedback" id="feed15"></div>
+    </div>
+
+    <div class="question-block" id="block16">
+        <div class="question-title">16. Eating too many sweets and chocolates prevents tooth decay.</div>
+        <button class="tf-btn" onclick="checkTF(16, 'True', 'False')">True</button>
+        <button class="tf-btn" onclick="checkTF(16, 'False', 'False')">False</button>
+        <div class="feedback" id="feed16"></div>
+    </div>
+
+    <div class="question-block" id="block17">
+        <div class="question-title">17. All microbes are harmful to humans.</div>
+        <button class="tf-btn" onclick="checkTF(17, 'True', 'False')">True</button>
+        <button class="tf-btn" onclick="checkTF(17, 'False', 'False')">False</button>
+        <div class="feedback" id="feed17"></div>
+    </div>
+
+    <div class="question-block" id="block18">
+        <div class="question-title">18. Bacteria help in making curd from milk.</div>
+        <button class="tf-btn" onclick="checkTF(18, 'True', 'True')">True</button>
+        <button class="tf-btn" onclick="checkTF(18, 'False', 'True')">False</button>
+        <div class="feedback" id="feed18"></div>
+    </div>
+
+    <div class="question-block" id="block19">
+        <div class="question-title">19. Viruses cause diseases like common cold and influenza.</div>
+        <button class="tf-btn" onclick="checkTF(19, 'True', 'True')">True</button>
+        <button class="tf-btn" onclick="checkTF(19, 'False', 'True')">False</button>
+        <div class="feedback" id="feed19"></div>
+    </div>
+
+    <div class="question-block" id="block20">
+        <div class="question-title">20. Fungi grow well in dry and cold places.</div>
+        <button class="tf-btn" onclick="checkTF(20, 'True', 'False')">True</button>
+        <button class="tf-btn" onclick="checkTF(20, 'False', 'False')">False</button>
+        <div class="feedback" id="feed20"></div>
+    </div>
+
+
+    <h3>Part C: Short Answer Questions (लघु उत्तरीय प्रश्न)</h3>
+    <p style="color: gray; font-size: 0.9em;">*मुख्य शब्द टाइप करें और Check दबाएं।*</p>
+
+    <div class="question-block" id="block21">
+        <div class="question-title">21. What are the temporary teeth otherwise known as?</div>
+        <input type="text" class="short-ans-input" id="q21" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(21, ['milk teeth', 'milk tooth', 'milk'], 'Milk teeth')">Check</button>
+        <div class="feedback" id="feed21"></div>
+    </div>
+
+    <div class="question-block" id="block22">
+        <div class="question-title">22. Name the four types of permanent teeth.</div>
+        <input type="text" class="short-ans-input" id="q22" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(22, ['incisors canines premolars molars', 'incisor canine premolar molar'], 'Incisors, Canines, Premolars, and Molars')">Check</button>
+        <div class="feedback" id="feed22"></div>
+    </div>
+
+    <div class="question-block" id="block23">
+        <div class="question-title">23. What is the main function of Molars?</div>
+        <input type="text" class="short-ans-input" id="q23" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(23, ['chewing', 'grinding', 'chew', 'grind'], 'Chewing and grinding food')">Check</button>
+        <div class="feedback" id="feed23"></div>
+    </div>
+
+    <div class="question-block" id="block24">
+        <div class="question-title">24. What causes cavities in teeth?</div>
+        <input type="text" class="short-ans-input" id="q24" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(24, ['bacteria', 'germs', 'acid', 'sugar'], 'Bacteria or germs')">Check</button>
+        <div class="feedback" id="feed24"></div>
+    </div>
+
+    <div class="question-block" id="block25">
+        <div class="question-title">25. Name the part of the tooth that lies below the enamel.</div>
+        <input type="text" class="short-ans-input" id="q25" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(25, ['dentine', 'dentin'], 'Dentine')">Check</button>
+        <div class="feedback" id="feed25"></div>
+    </div>
+
+    <div class="question-block" id="block26">
+        <div class="question-title">26. Who is a doctor that takes care of our teeth?</div>
+        <input type="text" class="short-ans-input" id="q26" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(26, ['dentist'], 'Dentist')">Check</button>
+        <div class="feedback" id="feed26"></div>
+    </div>
+
+    <div class="question-block" id="block27">
+        <div class="question-title">27. Name four main types of microbes.</div>
+        <input type="text" class="short-ans-input" id="q27" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(27, ['bacteria virus fungi protozoa', 'bacteria viruses fungi protozoa'], 'Bacteria, Viruses, Fungi, and Protozoa')">Check</button>
+        <div class="feedback" id="feed27"></div>
+    </div>
+
+    <div class="question-block" id="block28">
+        <div class="question-title">28. Name a microbe used to make bread soft.</div>
+        <input type="text" class="short-ans-input" id="q28" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(28, ['yeast', 'fungi', 'fungus'], 'Yeast')">Check</button>
+        <div class="feedback" id="feed28"></div>
+    </div>
+
+    <div class="question-block" id="block29">
+        <div class="question-title">29. Which famous disease is caused by protozoa?</div>
+        <input type="text" class="short-ans-input" id="q29" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(29, ['malaria', 'dysentery'], 'Malaria')">Check</button>
+        <div class="feedback" id="feed29"></div>
+    </div>
+
+    <div class="question-block" id="block30">
+        <div class="question-title">30. Why should we rinse our mouth after every meal?</div>
+        <input type="text" class="short-ans-input" id="q30" placeholder="Type answer here...">
+        <button class="check-btn" onclick="checkText(30, ['food', 'germs', 'clean', 'decay'], 'To remove food particles')">Check</button>
+        <div class="feedback" id="feed30"></div>
+    </div>
+
+</div>
+
+<script>
+    let totalScore = 0;
+    let answeredQuestions = new Set();
+
+    // बोलने वाला फ़ंक्शन (Text to Speech)
+    function speakText(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // पहले से चल रही आवाज़ रोकें
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'hi-IN'; // हिंदी आवाज़ सेट करें
+            utterance.rate = 1.0;     // बोलने की स्पीड
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    function updateScore(qNum, isCorrect) {
+        if (!answeredQuestions.has(qNum)) {
+            if (isCorrect) {
+                totalScore++;
+                answeredQuestions.add(qNum);
+            }
+        } else {
+            let currentBlock = document.getElementById('block' + qNum);
+            if (isCorrect && !currentBlock.classList.contains('correct')) {
+                totalScore++;
+            }
+            if (!isCorrect && currentBlock.classList.contains('correct')) {
+                totalScore--;
+            }
+        }
+        document.getElementById('liveScore').innerText = totalScore;
+    }
+
+    // Dropdown Check
+    function checkDropdown(qNum, correctVal, displayVal) {
+        let userVal = document.getElementById('q' + qNum).value;
+        let block = document.getElementById('block' + qNum);
+        let feed = document.getElementById('feed' + qNum);
+        
+        feed.style.display = "block";
+        
+        if (userVal === "") {
+            feed.innerHTML = "<span class='wrong-text'>कृपया पहले उत्तर चुनें! ⚠️</span>";
+            speakText("कृपया पहले उत्तर चुनें");
+            return;
+        }
+
+        if (userVal === correctVal) {
+            block.className = "question-block correct";
+            feed.innerHTML = "<span class='correct-text'>Correct! 🎉 Excellent.</span>";
+            speakText("सही जवाब! बहुत अच्छे।");
+            updateScore(qNum, true);
+        } else {
+            block.className = "question-block wrong";
+            feed.innerHTML = "<span class='wrong-text'>Wrong! ❌ Correct answer is: " + displayVal + "</span>";
+            speakText("गलत जवाब! सही उत्तर है " + displayVal);
+            updateScore(qNum, false);
+        }
+    }
+
+    // Text Box Check
+    function checkText(qNum, allowedAnswers, displayCorrect) {
+        let userAns = document.getElementById('q' + qNum).value.trim().toLowerCase();
+        let block = document.getElementById('block' + qNum);
+        let feed = document.getElementById('feed' + qNum);
+        
+        feed.style.display = "block";
+        
+        if (userAns === "") {
+            feed.innerHTML = "<span class='wrong-text'>कृपया पहले उत्तर टाइप करें! ⚠️</span>";
+            speakText("कृपया पहले उत्तर टाइप करें");
+            return;
+        }
+
+        let isCorrect = false;
+        if(qNum >= 21) {
+            for (let ans of allowedAnswers) {
+                if (userAns.includes(ans) || ans.includes(userAns)) {
+                    isCorrect = true;
+                    break;
+                }
+            }
+        } else {
+            isCorrect = allowedAnswers.includes(userAns);
+        }
+
+        if (isCorrect) {
+            block.className = "question-block correct";
+            feed.innerHTML = "<span class='correct-text'>Correct! 👍 Great job.</span>";
+            speakText("सही जवाब! बहुत बढ़िया काम किया।");
+            updateScore(qNum, true);
+        } else {
+            block.className = "question-block wrong";
+            feed.innerHTML = "<span class='wrong-text'>Wrong! ❌ Expected Answer: " + displayCorrect + "</span>";
+            speakText("गलत जवाब! सही उत्तर है " + displayCorrect);
+            updateScore(qNum, false);
+        }
+    }
+
+    // True or False Check
+    function checkTF(qNum, userVal, correctVal) {
+        let block = document.getElementById('block' + qNum);
+        let feed = document.getElementById('feed' + qNum);
+        
+        feed.style.display = "block";
+        
+        if (userVal === correctVal) {
+            block.className = "question-block correct";
+            feed.innerHTML = "<span class='correct-text'>Correct! 🎉 That's right.</span>";
+            speakText("सही जवाब! यह बिल्कुल सही है।");
+            updateScore(qNum, true);
+        } else {
+            block.className = "question-block wrong";
+            let hindiSpeechAns = correctVal === 'True' ? "सही" : "गलत";
+            block.className = "question-block wrong";
+            feed.innerHTML = "<span class='wrong-text'>Wrong! ❌ This statement is " + correctVal + ".</span>";
+            speakText("गलत जवाब! यह कथन " + hindiSpeechAns + " है।");
+            updateScore(qNum, false);
+        }
+    }
+</script>
+
+</body>
+</html>
