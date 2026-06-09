@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worksheets of Class 4 CBSE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap');
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            color: #2c3e50;
+            margin: 0;
+            padding: 30px 15px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 4px solid #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.8em;
+            margin: 0 0 10px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4dadf7, #33d9b2, #ffb142);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #7f8c8d;
+            font-weight: 700;
+            background: #e8f4f8;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .loader {
+            text-align: center;
+            font-size: 1.4em;
+            color: #34495e;
+            padding: 40px 0;
+            font-weight: bold;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff6b6b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            padding: 0;
+            margin-top: 20px;
+            list-style: none;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border: 2px solid #eef2f7;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card.border-0 { border-top: 6px solid #ff6b6b; }
+        .card.border-1 { border-top: 6px solid #4dadf7; }
+        .card.border-2 { border-top: 6px solid #33d9b2; }
+        .card.border-3 { border-top: 6px solid #ffb142; }
+        .card.border-4 { border-top: 6px solid #a55eea; }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            color: #2c3e50;
+            font-size: 1.25em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .btn-open {
+            display: block;
+            text-align: center;
+            background: #4dadf7;
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: background 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card:nth-child(5n+1) .btn-open { background: #ff6b6b; }
+        .card:nth-child(5n+2) .btn-open { background: #4dadf7; }
+        .card:nth-child(5n+3) .btn-open { background: #33d9b2; }
+        .card:nth-child(5n+4) .btn-open { background: #ffb142; }
+        .card:nth-child(5n+5) .btn-open { background: #a55eea; }
+
+        .btn-open:hover {
+            opacity: 0.95;
+            transform: scale(1.02);
+        }
+
+        .meta-path {
+            font-size: 0.8em;
+            color: #95a5a6;
+            margin-top: 12px;
+            word-break: break-all;
+            text-align: center;
+        }
+
+        #error-msg {
+            color: #e74c3c;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            background: #fdeaea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>✏️ Worksheets of Class 4 CBSE 🌟</h1>
+        <div class="subtitle">Interactive Learning Portal</div>
+    </header>
+
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+        Gathering your worksheets...
+    </div>
+    
+    <div id="error-msg"></div>
+
+    <ul id="grid-list" class="grid-list"></ul>
+</div>
+
+<script>
+    // --- PRE-CONFIGURED FOR YOUR REPOSITORY ---
+    const CONFIG = {
+        username: 'Sanskaar-Mishra', 
+        repo: 'l',           
+        branch: 'main'       
+    };
+    // ------------------------------------------
+
+    async function autoIndexWorksheets() {
+        const gridList = document.getElementById('grid-list');
+        const loader = document.getElementById('loader');
+        const errorMsg = document.getElementById('error-msg');
+        
+        const apiUrl = `https://api.github.com/repos/${CONFIG.username}/${CONFIG.repo}/git/trees/${CONFIG.branch}?recursive=1`;
+
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error('Repository data fetch failed.');
+            
+            const data = await response.json();
+            
+            // Filters out everything except independent HTML quiz files
+            const htmlFiles = data.tree.filter(file => 
+                file.type === 'blob' && 
+                file.path.endsWith('.html') && 
+                file.path.toLowerCase() !== 'index.html'
+            );
+
+            if (htmlFiles.length === 0) {
+                loader.innerHTML = "✨ No worksheets uploaded yet! Drop your HTML quiz files here and they will appear automatically. ✨";
+                return;
+            }
+
+            // Fetch titles asynchronously from the raw files
+            const pagesData = await Promise.all(htmlFiles.map(async (file, index) => {
+                const rawUrl = `https://raw.githubusercontent.com/${CONFIG.username}/${CONFIG.repo}/${CONFIG.branch}/${file.path}`;
+                let title = file.path.replace('.html', '').replace(/-/g, ' '); // Clean fallback text
+                
+                try {
+                    const fileResponse = await fetch(rawUrl);
+                    if (fileResponse.ok) {
+                        const text = await fileResponse.text();
+                        const match = text.match(/<title[^>]*>([^<]+)<\/title>/i);
+                        if (match && match[1]) {
+                            title = match[1].trim();
+                        }
+                    }
+                } catch (e) {
+                    console.error("Error reading title from file:", e);
+                }
+                
+                return { path: file.path, title: title, index: index };
+            }));
+
+            loader.style.display = 'none';
+
+            // Sort sheets alphabetically 
+            pagesData.sort((a, b) => a.title.localeCompare(b.title));
+
+            // Inject the styled card grids
+            pagesData.forEach((page, idx) => {
+                const cardLi = document.createElement('li');
+                cardLi.className = `card border-${idx % 5}`;
+                
+                cardLi.innerHTML = `
+                    <div>
+                        <div class="card-title">📝 ${page.title}</div>
+                    </div>
+                    <div>
+                        <a class="btn-open" href="${page.path}">Start Worksheet ➔</a>
+                        <div class="meta-path">file: ${page.path}</div>
+                    </div>
+                `;
+                gridList.appendChild(cardLi);
+            });
+
+        } catch (error) {
+            loader.style.display = 'none';
+            errorMsg.style.display = 'block';
+            errorMsg.innerHTML = "⚠️ Setup Status: Please ensure that your GitHub Pages is turned on and your repository is set to 'Public' for the live index to load data successfully.";
+        }
+    }
+
+    autoIndexWorksheets();
+</script>
+
+</body>
+</html>
