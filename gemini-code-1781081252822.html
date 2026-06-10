@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 4 Social Science - Ch 1: India Our Country</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            background: #eef2f7;
+            padding: 10px;
+            border-left: 5px solid #2980b9;
+        }
+        .question-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        input[type="text"] {
+            padding: 6px 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 200px;
+        }
+        input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .radio-group, .tf-group {
+            margin: 8px 0;
+        }
+        .match-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 20px;
+        }
+        .match-left {
+            width: 40%;
+            font-weight: bold;
+        }
+        select {
+            padding: 6px;
+            border-radius: 4px;
+            border: 2px solid #bdc3c7;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #219a52;
+        }
+        #result-box {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f8f5;
+            border: 2px solid #2cc185;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .feedback {
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .correct-ans { color: #27ae60; }
+        .wrong-ans { color: #c0392b; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Class 4 Social Science <br><small>Chapter 1: India - Our Country</small></h1>
+    <p style="text-align: center; font-style: italic;">Answer all 30 questions below and click "Submit Quiz" at the bottom!</p>
+    
+    <form id="quizForm">
+
+        <h2>Section A: Fill in the Blanks</h2>
+        
+        <div class="question-block" id="q1_block">
+            <p>1. India is located in the continent of <input type="text" id="q1">.</p>
+            <div class="feedback" id="f1"></div>
+        </div>
+
+        <div class="question-block" id="q2_block">
+            <p>2. The capital of India is <input type="text" id="q2">.</p>
+            <div class="feedback" id="f2"></div>
+        </div>
+
+        <div class="question-block" id="q3_block">
+            <p>3. In terms of area, India is the <input type="text" id="q3" placeholder="e.g. 1st, 2nd, etc."> largest country in the world.</p>
+            <div class="feedback" id="f3"></div>
+        </div>
+
+        <div class="question-block" id="q4_block">
+            <p>4. The southern part of India is a <input type="text" id="q4">, because it is surrounded by water on three sides.</p>
+            <div class="feedback" id="f4"></div>
+        </div>
+
+        <div class="question-block" id="q5_block">
+            <p>5. The <input type="text" id="q5"> Ocean is named after our country.</p>
+            <div class="feedback" id="f5"></div>
+        </div>
+
+        <div class="question-block" id="q6_block">
+            <p>6. India is separated from Sri Lanka by the <input type="text" id="q6"> Strait.</p>
+            <div class="feedback" id="f6"></div>
+        </div>
+
+        <div class="question-block" id="q7_block">
+            <p>7. The northern boundary of India is protected by the <input type="text" id="q7"> mountain ranges.</p>
+            <div class="feedback" id="f7"></div>
+        </div>
+
+        <div class="question-block" id="q8_block">
+            <p>8. India is divided into <input type="text" id="q8"> States.</p>
+            <div class="feedback" id="f8"></div>
+        </div>
+
+        <div class="question-block" id="q9_block">
+            <p>9. There are <input type="text" id="q9"> Union Territories in India.</p>
+            <div class="feedback" id="f9"></div>
+        </div>
+
+        <div class="question-block" id="q10_block">
+            <p>10. <input type="text" id="q10"> is the largest state of India in terms of area.</p>
+            <div class="feedback" id="f10"></div>
+        </div>
+
+
+        <h2>Section B: True or False</h2>
+
+        <div class="question-block" id="q11_block">
+            <p>11. India is the most populous country in the world.</p>
+            <div class="tf-group">
+                <input type="radio" name="q11" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q11" value="False"> False
+            </div>
+            <div class="feedback" id="f11"></div>
+        </div>
+
+        <div class="question-block" id="q12_block">
+            <p>12. The Arabian Sea lies to the east of India.</p>
+            <div class="tf-group">
+                <input type="radio" name="q12" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q12" value="False"> False
+            </div>
+            <div class="feedback" id="f12"></div>
+        </div>
+
+        <div class="question-block" id="q13_block">
+            <p>13. Rajasthan is the smallest state of India.</p>
+            <div class="tf-group">
+                <input type="radio" name="q13" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q13" value="False"> False
+            </div>
+            <div class="feedback" id="f13"></div>
+        </div>
+
+        <div class="question-block" id="q14_block">
+            <p>14. New Delhi and Delhi are Union Territories.</p>
+            <div class="tf-group">
+                <input type="radio" name="q14" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q14" value="False"> False
+            </div>
+            <div class="feedback" id="f14"></div>
+        </div>
+
+        <div class="question-block" id="q15_block">
+            <p>15. China is a neighboring country of India located to the North.</p>
+            <div class="tf-group">
+                <input type="radio" name="q15" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q15" value="False"> False
+            </div>
+            <div class="feedback" id="f15"></div>
+        </div>
+
+        <div class="question-block" id="q16_block">
+            <p>16. Lakshadweep Islands are located in the Bay of Bengal.</p>
+            <div class="tf-group">
+                <input type="radio" name="q16" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q16" value="False"> False
+            </div>
+            <div class="feedback" id="f16"></div>
+        </div>
+
+        <div class="question-block" id="q17_block">
+            <p>17. The southern tip of the mainland of India is Kanyakumari.</p>
+            <div class="tf-group">
+                <input type="radio" name="q17" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q17" value="False"> False
+            </div>
+            <div class="feedback" id="f17"></div>
+        </div>
+
+        <div class="question-block" id="q18_block">
+            <p>18. Pakistan lies to the East of India.</p>
+            <div class="tf-group">
+                <input type="radio" name="q18" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q18" value="False"> False
+            </div>
+            <div class="feedback" id="f18"></div>
+        </div>
+
+        <div class="question-block" id="q19_block">
+            <p>19. The Andaman and Nicobar Islands belong to India.</p>
+            <div class="tf-group">
+                <input type="radio" name="q19" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q19" value="False"> False
+            </div>
+            <div class="feedback" id="f19"></div>
+        </div>
+
+        <div class="question-block" id="q20_block">
+            <p>20. There are seven main physical divisions of India.</p>
+            <div class="tf-group">
+                <input type="radio" name="q20" value="True"> True &nbsp;&nbsp;
+                <input type="radio" name="q20" value="False"> False
+            </div>
+            <div class="feedback" id="f20"></div>
+        </div>
+
+
+        <h2>Section C: Match the State Capitals</h2>
+        <p style="font-size: 14px; color: #555;">Select the correct capital for each state:</p>
+
+        <div class="question-block" id="q21_block">
+            <div class="match-row">
+                <div class="match-left">21. Maharashtra</div>
+                <select id="q21">
+                    <option value="">--Select--</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Dispur">Dispur</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Patna">Patna</option>
+                </select>
+            </div>
+            <div class="feedback" id="f21"></div>
+        </div>
+
+        <div class="question-block" id="q22_block">
+            <div class="match-row">
+                <div class="match-left">22. Karnataka</div>
+                <select id="q22">
+                    <option value="">--Select--</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Dispur">Dispur</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Patna">Patna</option>
+                </select>
+            </div>
+            <div class="feedback" id="f22"></div>
+        </div>
+
+        <div class="question-block" id="q23_block">
+            <div class="match-row">
+                <div class="match-left">23. Rajasthan</div>
+                <select id="q23">
+                    <option value="">--Select--</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Dispur">Dispur</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Patna">Patna</option>
+                </select>
+            </div>
+            <div class="feedback" id="f23"></div>
+        </div>
+
+        <div class="question-block" id="q24_block">
+            <div class="match-row">
+                <div class="match-left">24. Assam</div>
+                <select id="q24">
+                    <option value="">--Select--</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Dispur">Dispur</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Patna">Patna</option>
+                </select>
+            </div>
+            <div class="feedback" id="f24"></div>
+        </div>
+
+        <div class="question-block" id="q25_block">
+            <div class="match-row">
+                <div class="match-left">25. Bihar</div>
+                <select id="q25">
+                    <option value="">--Select--</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Dispur">Dispur</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Patna">Patna</option>
+                </select>
+            </div>
+            <div class="feedback" id="f25"></div>
+        </div>
+
+
+        <h2>Section D: Short Answer Questions</h2>
+        <p style="font-size:14px; color:#555;">Type short, precise keywords or names to get evaluated automatically.</p>
+
+        <div class="question-block" id="q26_block">
+            <p>26. Which body of water lies to the East of India?</p>
+            <input type="text" id="q26" style="width: 300px;" placeholder="Your answer...">
+            <div class="feedback" id="f26"></div>
+        </div>
+
+        <div class="question-block" id="q27_block">
+            <p>27. Name India's northern neighbor country that is landlocked between India and China.</p>
+            <input type="text" id="q27" style="width: 300px;" placeholder="Your answer...">
+            <div class="feedback" id="f27"></div>
+        </div>
+
+        <div class="question-block" id="q28_block">
+            <p>28. What is the smallest state of India by area?</p>
+            <input type="text" id="q28" style="width: 300px;" placeholder="Your answer...">
+            <div class="feedback" id="f28"></div>
+        </div>
+
+        <div class="question-block" id="q29_block">
+            <p>29. What type of landform is the Deccan region of India?</p>
+            <input type="text" id="q29" style="width: 300px;" placeholder="e.g. Mountain, Plain, Plateau">
+            <div class="feedback" id="f29"></div>
+        </div>
+
+        <div class="question-block" id="q30_block">
+            <p>30. Who is the head of the Central Government in India?</p>
+            <input type="text" id="q30" style="width: 300px;" placeholder="e.g. President, Prime Minister">
+            <div class="feedback" id="f30"></div>
+        </div>
+
+        <button type="button" onclick="checkQuiz()">Submit Quiz</button>
+    </form>
+
+    <div id="result-box">
+        <h3>Quiz Evaluation Completed!</h3>
+        <p class="score" id="score-text"></p>
+        <p>Scroll up to review your mistakes highlighted in green and red!</p>
+    </div>
+</div>
+
+<script>
+function checkQuiz() {
+    let score = 0;
+    const totalQuestions = 30;
+
+    // Correct Answers Database (Case insensitive for texts)
+    const answers = {
+        q1: "asia",
+        q2: "new delhi",
+        q3: "7th",
+        q4: "peninsula",
+        q5: "indian",
+        q6: "palk",
+        q7: "himalaya",
+        q8: "28",
+        q9: "8",
+        q10: "rajasthan",
+        q11: "True",
+        q12: "False",
+        q13: "False",
+        q14: "True",
+        q15: "True",
+        q16: "False",
+        q17: "kanyakumari",
+        q18: "False",
+        q19: "True",
+        q20: "False", // India has 6 main physical divisions
+        q21: "Mumbai",
+        q22: "Bengaluru",
+        q23: "Jaipur",
+        q24: "Dispur",
+        q25: "Patna",
+        q26: "bay of bengal",
+        q27: "nepal", // Bhutan is also fine, handled via condition below
+        q28: "goa",
+        q29: "plateau",
+        q30: "prime minister"
+    };
+
+    // Helper functions to show results
+    function setCorrect(qNum, msg="Correct!") {
+        score++;
+        document.getElementById("f" + qNum).innerHTML = msg;
+        document.getElementById("f" + qNum).className = "feedback correct-ans";
+    }
+
+    function setWrong(qNum, correctVal) {
+        document.getElementById("f" + qNum).innerHTML = "Incorrect. Correct Answer: <b>" + correctVal + "</b>";
+        document.getElementById("f" + qNum).className = "feedback wrong-ans";
+    }
+
+    // --- Section A Evaluation ---
+    for(let i=1; i<=10; i++) {
+        let userAns = document.getElementById("q"+i).value.trim().toLowerCase();
+        // Exception handler for 7th / seventh
+        if(i === 3 && (userAns === "7" || userAns === "seventh" || userAns === "7th")) {
+            setCorrect(3);
+        } else if(i === 7 && (userAns === "himalayan" || userAns === "himalayas" || userAns === "himalaya")) {
+            setCorrect(7);
+        } else if (userAns === answers["q"+i]) {
+            setCorrect(i);
+        } else {
+            setWrong(i, answers["q"+i].toUpperCase());
+        }
+    }
+
+    // --- Section B Evaluation ---
+    for(let i=11; i<=20; i++) {
+        let radios = document.getElementsByName("q"+i);
+        let selectedVal = "";
+        for (let r of radios) {
+            if (r.checked) selectedVal = r.value;
+        }
+        if (selectedVal === answers["q"+i]) {
+            setCorrect(i);
+        } else {
+            setWrong(i, answers["q"+i]);
+        }
+    }
+
+    // --- Section C Evaluation ---
+    for(let i=21; i<=25; i++) {
+        let userSel = document.getElementById("q"+i).value;
+        if(userSel === answers["q"+i]) {
+            setCorrect(i);
+        } else {
+            setWrong(i, answers["q"+i]);
+        }
+    }
+
+    // --- Section D Evaluation ---
+    // Q26
+    let q26Ans = document.getElementById("q26").value.trim().toLowerCase();
+    if(q26Ans.includes("bay of bengal")) { setCorrect(26); } else { setWrong(26, "Bay of Bengal"); }
+
+    // Q27
+    let q27Ans = document.getElementById("q27").value.trim().toLowerCase();
+    if(q27Ans.includes("nepal") || q27Ans.includes("bhutan")) { setCorrect(27); } else { setWrong(27, "Nepal or Bhutan"); }
+
+    // Q28
+    let q28Ans = document.getElementById("q28").value.trim().toLowerCase();
+    if(q28Ans === "goa") { setCorrect(28); } else { setWrong(28, "Goa"); }
+
+    // Q29
+    let q29Ans = document.getElementById("q29").value.trim().toLowerCase();
+    if(q29Ans.includes("plateau")) { setCorrect(29); } else { setWrong(29, "Plateau (Deccan Plateau)"); }
+
+    // Q30
+    let q30Ans = document.getElementById("q30").value.trim().toLowerCase();
+    if(q30Ans.includes("prime minister") || q30Ans.includes("pm")) { setCorrect(30); } else { setWrong(30, "Prime Minister"); }
+
+
+    // Show Total Score
+    let resultBox = document.getElementById("result-box");
+    let scoreText = document.getElementById("score-text");
+    resultBox.style.display = "block";
+    scoreText.innerText = "You Scored: " + score + " / " + totalQuestions;
+    
+    // Smooth scroll down to result box
+    resultBox.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
