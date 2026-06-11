@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 4 English Grammar - Chapter 1: The Sentence</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e90ff;
+            text-align: center;
+            border-bottom: 3px solid #1e90ff;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #ff4500;
+            background: #fff5ee;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .question-box {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #1e90ff;
+            border-radius: 4px;
+        }
+        .btn-speak {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        .btn-speak:hover { background: #45a049; }
+        .feedback {
+            margin-top: 8px;
+            font-weight: bold;
+            display: none;
+        }
+        .correct { color: green; }
+        .wrong { color: red; }
+        input[type="text"], select {
+            padding: 6px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn-check {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        .match-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📝 Class 4 Grammar - Chapter 1: The Sentence</h1>
+    <p style="text-align:center; font-weight:bold;">सुनने के लिए 🔊 बटन दबाएं और तुरंत अपना उत्तर जांचें!</p>
+
+    <h2>Part A: Multiple Choice Questions (MCQs)</h2>
+    
+    <div class="question-box">
+        <p><strong>Q1.</strong> A sentence always begins with a ________ letter. 
+            <button class="btn-speak" onclick="speak('A sentence always begins with a blank letter.')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q1" value="wrong" onclick="checkRadio(this, 'wrong')"> small <br>
+        <input type="radio" name="q1" value="correct" onclick="checkRadio(this, 'correct')"> capital <br>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q2.</strong> What comes at the end of an interrogative sentence?
+            <button class="btn-speak" onclick="speak('What comes at the end of an interrogative sentence?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q2" value="wrong" onclick="checkRadio(this, 'wrong')"> Full stop (.) <br>
+        <input type="radio" name="q2" value="correct" onclick="checkRadio(this, 'correct')"> Question mark (?) <br>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q3.</strong> Identify the sentence: "Alas! We lost the match."
+            <button class="btn-speak" onclick="speak('Identify the sentence: Alas! We lost the match.')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q3" value="correct" onclick="checkRadio(this, 'correct')"> Exclamatory <br>
+        <input type="radio" name="q3" value="wrong" onclick="checkRadio(this, 'wrong')"> Imperative <br>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q4.</strong> A group of words that makes complete sense is called a ________.
+            <button class="btn-speak" onclick="speak('A group of words that makes complete sense is called a blank.')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q4" value="wrong" onclick="checkRadio(this, 'wrong')"> Phrase <br>
+        <input type="radio" name="q4" value="correct" onclick="checkRadio(this, 'correct')"> Sentence <br>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q5.</strong> "Shut the door." This is an ________ sentence.
+            <button class="btn-speak" onclick="speak('Shut the door. This is an blank sentence.')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q5" value="correct" onclick="checkRadio(this, 'correct')"> Imperative (Command) <br>
+        <input type="radio" name="q5" value="wrong" onclick="select'wrong')"> Assertive <br>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q6.</strong> Every sentence must have a ________.
+            <button class="btn-speak" onclick="speak('Every sentence must have a blank.')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q6" value="correct" onclick="checkRadio(this, 'correct')"> Verb <br>
+        <input type="radio" name="q6" value="wrong" onclick="checkRadio(this, 'wrong')"> Question mark <br>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q7.</strong> Which of these is a complete sentence?
+            <button class="btn-speak" onclick="speak('Which of these is a complete sentence?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q7" value="wrong" onclick="checkRadio(this, 'wrong')"> In the garden <br>
+        <input type="radio" name="q7" value="correct" onclick="checkRadio(this, 'correct')"> The birds are flying. <br>
+        <div class="feedback"></div>
+    </div>
+
+    <h2>Part B: Fill in the Blanks</h2>
+    <p><i>(Options: Subject, Predicate, Imperative, Declarative, Interrogative)</i></p>
+
+    <div class="question-box">
+        <p><strong>Q8.</strong> The part which names the person or thing we are speaking about is the <input type="text" id="q8">.
+            <button class="btn-speak" onclick="speak('The part which names the person or thing we are speaking about is the blank')">🔊 Listen</button>
+            <button class="btn-check" onclick="checkText('q8', 'subject')">Check</button>
+        </p>
+        <div id="feedback-q8" class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q9.</strong> A sentence that makes a simple statement is a <input type="text" id="q9"> sentence.
+            <button class="btn-speak" onclick="speak('A sentence that makes a simple statement is a blank sentence.')">🔊 Listen</button>
+            <button class="btn-check" onclick="checkText('q9', 'declarative')">Check</button>
+        </p>
+        <div id="feedback-q9" class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q10.</strong> The <input type="text" id="q10"> tells something about the Subject.
+            <button class="btn-speak" onclick="speak('The blank tells something about the Subject.')">🔊 Listen</button>
+            <button class="btn-check" onclick="checkText('q10', 'predicate')">Check</button>
+        </p>
+        <div id="feedback-q10" class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q11.</strong> A sentence that asks a question is an <input type="text" id="q11"> sentence.
+            <button class="btn-speak" onclick="speak('A sentence that asks a question is an blank sentence.')">🔊 Listen</button>
+            <button class="btn-check" onclick="checkText('q11', 'interrogative')">Check</button>
+        </p>
+        <div id="feedback-q11" class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q12.</strong> "Please help me." is an <input type="text" id="q12"> sentence.
+            <button class="btn-speak" onclick="speak('Please help me is an blank sentence.')">🔊 Listen</button>
+            <button class="btn-check" onclick="checkText('q12', 'imperative')">Check</button>
+        </p>
+        <div id="feedback-q12" class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q13.</strong> A sentence always makes <input type="text" id="q13"> sense. (complete/incomplete)
+            <button class="btn-speak" onclick="speak('A sentence always makes blank sense.')">🔊 Listen</button>
+            <button class="btn-check" onclick="checkText('q13', 'complete')">Check</button>
+        </p>
+        <div id="feedback-q13" class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q14.</strong> An exclamatory sentence ends with an exclamation <input type="text" id="q14">.
+            <button class="btn-speak" onclick="speak('An exclamatory sentence ends with an exclamation blank.')">🔊 Listen</button>
+            <button class="btn-check" onclick="checkText('q14', 'mark')">Check</button>
+        </p>
+        <div id="feedback-q14" class="feedback"></div>
+    </div>
+
+    <h2>Part C: True or False</h2>
+
+    <div class="question-box">
+        <p><strong>Q15.</strong> "The sun rises in the east" is a complete sentence.
+            <button class="btn-speak" onclick="speak('The sun rises in the east is a complete sentence. True or False?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q15" value="correct" onclick="checkRadio(this, 'correct')"> True
+        <input type="radio" name="q15" value="wrong" onclick="checkRadio(this, 'wrong')"> False
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q16.</strong> A phrase has a complete meaning on its own.
+            <button class="btn-speak" onclick="speak('A phrase has a complete meaning on its own. True or False?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q16" value="wrong" onclick="checkRadio(this, 'wrong')"> True
+        <input type="radio" name="q16" value="correct" onclick="checkRadio(this, 'correct')"> False
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q17.</strong> An imperative sentence can express a command or a request.
+            <button class="btn-speak" onclick="speak('An imperative sentence can express a command or a request. True or False?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q17" value="correct" onclick="checkRadio(this, 'correct')"> True
+        <input type="radio" name="q17" value="wrong" onclick="checkRadio(this, 'wrong')"> False
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q18.</strong> "What a beautiful flower!" is an interrogative sentence.
+            <button class="btn-speak" onclick="speak('What a beautiful flower is an interrogative sentence. True or False?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q18" value="wrong" onclick="checkRadio(this, 'wrong')"> True
+        <input type="radio" name="q18" value="correct" onclick="checkRadio(this, 'correct')"> False
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q19.</strong> The subject usually comes before the predicate.
+            <button class="btn-speak" onclick="speak('The subject usually comes before the predicate. True or False?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q19" value="correct" onclick="checkRadio(this, 'correct')"> True
+        <input type="radio" name="q19" value="wrong" onclick="checkRadio(this, 'wrong')"> False
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q20.</strong> "Running fast" is a sentence.
+            <button class="btn-speak" onclick="speak('Running fast is a sentence. True or False?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q20" value="wrong" onclick="checkRadio(this, 'wrong')"> True
+        <input type="radio" name="q20" value="correct" onclick="checkRadio(this, 'correct')"> False
+        <div class="feedback"></div>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q21.</strong> Assertive sentences are also called declarative sentences.
+            <button class="btn-speak" onclick="speak('Assertive sentences are also called declarative sentences. True or False?')">🔊 Listen</button>
+        </p>
+        <input type="radio" name="q21" value="correct" onclick="checkRadio(this, 'correct')"> True
+        <input type="radio" name="q21" value="wrong" onclick="checkRadio(this, 'wrong')"> False
+        <div class="feedback"></div>
+    </div>
+
+    <h2>Part D: Match the Subject with correct Predicate</h2>
+    <p><i>सही Predicate चुनकर वाक्य पूरा करें:</i></p>
+
+    <div class="match-row">
+        <span><strong>Q22.</strong> The stars ______</span>
+        <select id="q22" onchange="checkMatch('q22', 'shine')">
+            <option value="">--Choose--</option>
+            <option value="shine">shine at night.</option>
+            <option value="honey">makes honey.</option>
+            <option value="doctor">treats patients.</option>
+        </select>
+        <span id="feedback-q22"></span>
+    </div>
+
+    <div class="match-row">
+        <span><strong>Q23.</strong> A bee ______</span>
+        <select id="q23" onchange="checkMatch('q23', 'honey')">
+            <option value="">--Choose--</option>
+            <option value="shine">shine at night.</option>
+            <option value="honey">makes honey.</option>
+            <option value="doctor">treats patients.</option>
+        </select>
+        <span id="feedback-q23"></span>
+    </div>
+
+    <div class="match-row">
+        <span><strong>Q24.</strong> A doctor ______</span>
+        <select id="q24" onchange="checkMatch('q24', 'doctor')">
+            <option value="">--Choose--</option>
+            <option value="shine">shine at night.</option>
+            <option value="honey">makes honey.</option>
+            <option value="doctor">treats patients.</option>
+        </select>
+        <span id="feedback-q24"></span>
+    </div>
+
+    <div class="match-row">
+        <span><strong>Q25.</strong> Dogs ______</span>
+        <select id="q25" onchange="checkMatch('q25', 'bark')">
+            <option value="">--Choose--</option>
+            <option value="bark">bark at strangers.</option>
+            <option value="national">is our national bird.</option>
+            <option value="teaches">teaches us in school.</option>
+        </select>
+        <span id="feedback-q25"></span>
+    </div>
+
+    <div class="match-row">
+        <span><strong>Q26.</strong> The peacock ______</span>
+        <select id="q26" onchange="checkMatch('q26', 'national')">
+            <option value="">--Choose--</option>
+            <option value="bark">bark at strangers.</option>
+            <option value="national">is our national bird.</option>
+            <option value="teaches">teaches us in school.</option>
+        </select>
+        <span id="feedback-q26"></span>
+    </div>
+
+    <div class="match-row">
+        <span><strong>Q27.</strong> My teacher ______</span>
+        <select id="q27" onchange="checkMatch('q27', 'teaches')">
+            <option value="">--Choose--</option>
+            <option value="bark">bark at strangers.</option>
+            <option value="national">is our national bird.</option>
+            <option value="teaches">teaches us in school.</option>
+        </select>
+        <span id="feedback-q27"></span>
+    </div>
+
+    <h2>Part E: Identify the Type of Sentence</h2>
+
+    <div class="question-box">
+        <p><strong>Q28.</strong> "Where do you live?"
+            <button class="btn-speak" onclick="speak('Where do you live?')">🔊 Listen</button>
+        </p>
+        <select id="q28" onchange="checkMatch('q28', 'interrogative')">
+            <option value="">--Select Type--</option>
+            <option value="declarative">Declarative</option>
+            <option value="interrogative">Interrogative</option>
+            <option value="exclamatory">Exclamatory</option>
+        </select>
+        <span id="feedback-q28"></span>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q29.</strong> "Wow! What a great catch!"
+            <button class="btn-speak" onclick="speak('Wow! What a great catch!')">🔊 Listen</button>
+        </p>
+        <select id="q29" onchange="checkMatch('q29', 'exclamatory')">
+            <option value="">--Select Type--</option>
+            <option value="declarative">Declarative</option>
+            <option value="interrogative">Interrogative</option>
+            <option value="exclamatory">Exclamatory</option>
+        </select>
+        <span id="feedback-q29"></span>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Q30.</strong> "The earth revolves around the sun."
+            <button class="btn-speak" onclick="speak('The earth revolves around the sun.')">🔊 Listen</button>
+        </p>
+        <select id="q30" onchange="checkMatch('q30', 'declarative')">
+            <option value="">--Select Type--</option>
+            <option value="declarative">Declarative</option>
+            <option value="interrogative">Interrogative</option>
+            <option value="exclamatory">Exclamatory</option>
+        </select>
+        <span id="feedback-q30"></span>
+    </div>
+
+</div>
+
+<script>
+    // Text to Speech Function
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            var utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Slightly slower for Class 4 kids
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Sorry, your browser doesn't support text to speech!");
+        }
+    }
+
+    // Radio Button Checker (MCQ / True-False)
+    function checkRadio(element, result) {
+        let feedbackBox = element.parentElement.querySelector('.feedback');
+        feedbackBox.style.display = 'block';
+        if(result === 'correct') {
+            feedbackBox.innerHTML = "✅ Correct Answer! Good job!";
+            feedbackBox.className = "feedback correct";
+        } else {
+            feedbackBox.innerHTML = "❌ Wrong Answer! Try again.";
+            feedbackBox.className = "feedback wrong";
+        }
+    }
+
+    // Text Input Checker (Fill in the blanks)
+    function checkText(id, correctAnswer) {
+        let userInput = document.getElementById(id).value.trim().toLowerCase();
+        let feedbackBox = document.getElementById('feedback-' + id);
+        feedbackBox.style.display = 'block';
+        
+        if(userInput === correctAnswer) {
+            feedbackBox.innerHTML = "✅ Superb! Correct answer.";
+            feedbackBox.className = "feedback correct";
+        } else {
+            feedbackBox.innerHTML = "❌ Try again. (Hint: check spelling)";
+            feedbackBox.className = "feedback wrong";
+        }
+    }
+
+    // Dropdown Matching Checker
+    function checkMatch(id, correctAnswer) {
+        let selectedValue = document.getElementById(id).value;
+        let feedbackBox = document.getElementById('feedback-' + id);
+        
+        if(selectedValue === correctAnswer) {
+            feedbackBox.innerHTML = " ✅ Correct!";
+            feedbackBox.style.color = "green";
+            feedbackBox.style.fontWeight = "bold";
+        } else {
+            feedbackBox.innerHTML = " ❌ Wrong!";
+            feedbackBox.style.color = "red";
+            feedbackBox.style.fontWeight = "bold";
+        }
+    }
+</script>
+
+</body>
+</html>
